@@ -5,6 +5,7 @@ import { placeholders, site } from '../config/site'
 export type Block =
   | { t: 'p'; text: string }
   | { t: 'h3'; text: string }
+  | { t: 'strong'; text: string }
   | { t: 'ul'; items: string[] }
   | { t: 'ol'; items: string[] }
   | { t: 'fields'; items: { label: string; value: string }[] }
@@ -24,6 +25,7 @@ function hasUrl() { return !!import.meta.env.VITE_SITE_URL }
 function BlockView({ b }: { b: Block }) {
   switch (b.t) {
     case 'p': return <p>{b.text}</p>
+    case 'strong': return <p className="!mt-7 font-semibold text-navy-900">{b.text}</p>
     case 'h3': return <h3 className="!mt-8 text-lg font-semibold text-navy-900">{b.text}</h3>
     case 'ul': return <ul className="list-disc space-y-2 pl-6 marker:text-cyan-500">{b.items.map((i) => <li key={i}>{i}</li>)}</ul>
     case 'ol': return <ol className="list-decimal space-y-2 pl-6 marker:font-semibold marker:text-navy-700">{b.items.map((i) => <li key={i}>{i}</li>)}</ol>

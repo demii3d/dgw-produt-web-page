@@ -7,7 +7,7 @@ const env = import.meta.env
 export const site = {
   name: 'DigitWallet',
   url: (env.VITE_SITE_URL as string | undefined)?.replace(/\/$/, '') || 'https://www.example.com',
-  supportEmail: (env.VITE_SUPPORT_EMAIL as string) || '',
+  supportEmail: (env.VITE_SUPPORT_EMAIL as string) || 'support@digitwallethub.com',
   privacyEmail: (env.VITE_PRIVACY_EMAIL as string) || '',
   country: 'Nigeria',
   effectiveDate: 'November 19, 2026',

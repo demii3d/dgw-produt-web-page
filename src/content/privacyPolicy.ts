@@ -1,34 +1,152 @@
 import type { LegalSection } from '../components/LegalLayout'
 
-/**
- * PRIVACY POLICY CONTENT
- * Paste the authoritative policy wording here, verbatim, using the block helpers below.
- * Section titles follow the 16-section structure of the supplied policy.
- * Blocks: { t: 'p', text } | { t: 'h3', text } | { t: 'ul', items } | { t: 'ol', items }
- */
-const pending = [{ t: 'p' as const, text: '[POLICY TEXT PENDING — insert the authoritative wording for this section.]' }]
+const p = (text: string) => ({ t: 'p' as const, text })
+const h3 = (text: string) => ({ t: 'h3' as const, text })
+const b = (text: string) => ({ t: 'strong' as const, text })
+const ul = (...items: string[]) => ({ t: 'ul' as const, items })
+const ol = (...items: string[]) => ({ t: 'ol' as const, items })
 
-const titles = [
-  'Introduction',
-  'Information We Collect',
-  'How We Use Your Information',
-  'Card Importation and Third-Party Provider Integration',
-  'Third-Party Services and Information Sharing',
-  'Data Storage and Security',
-  'Data Retention',
-  'User Privacy Rights',
-  'Account and Card Deletion',
-  'Cookies and Analytics',
-  'International Data Transfers',
-  "Children's Privacy",
-  'Third-Party Websites and Services',
-  'Legal Compliance',
-  'Changes to This Privacy Policy',
-  'Contact Us',
+export const privacySections: LegalSection[] = [
+  { id: 'introduction', title: 'Introduction', blocks: [
+    p('Welcome to DigitWallet ("DigitWallet", "we", "our", or "us").'),
+    p('DigitWallet is a virtual card management application designed to allow users to import, connect, organize, monitor, and manage their existing virtual payment cards from supported third-party card providers through a centralized platform.'),
+    p('We recognize the importance of protecting your personal information and financial privacy. We are committed to maintaining appropriate security measures and handling your information responsibly.'),
+    p('This Privacy Policy explains how DigitWallet collects, uses, processes, stores, shares, and protects your personal information when you use our mobile application, website, and related services.'),
+    p('By accessing or using DigitWallet, you acknowledge that you have read and understood this Privacy Policy.'),
+  ] },
+  { id: 'information-we-collect', title: 'Information We Collect', blocks: [
+    p('We collect only the information reasonably necessary to operate our application, provide our services, maintain security, and improve user experience.'),
+    h3('2.1 Personal Information'),
+    p('When you create or manage a DigitWallet account, we may collect:'),
+    ul('Full name.', 'Email address.', 'Phone number, where provided.', 'Username and account profile information.', 'Account authentication information.', 'Account preferences and settings.'),
+    h3('2.2 Virtual Card Information'),
+    p('DigitWallet allows users to connect existing virtual cards from supported third-party card providers.'),
+    p('When you import a card, we may collect and retain limited card-related information, including:'),
+    ul('Card provider name.', 'Provider-issued card identification references.', 'Secure provider-generated card tokens.', 'Card type and network.', 'Card status.', 'Card display information necessary to identify connected cards.'),
+    b('Card Data Storage and Protection'),
+    p("DigitWallet does not maintain a database of users' complete virtual card numbers, expiration dates, or CVV security codes."),
+    p("Full card details remain with the respective card issuer or provider. Where card details are required for verification, they are submitted through the applicable provider's authorized verification process."),
+    p('DigitWallet stores only the provider-issued tokens, authorization references, and card identification references necessary to establish and maintain a connection with supported providers.'),
+    p('These tokens and references are treated as sensitive information and protected using appropriate security measures.'),
+    p('DigitWallet does not intentionally retain full card details or CVV information on its servers.'),
+    h3('2.3 Provider Authentication Information'),
+    p('When connecting a supported card provider, DigitWallet may receive and process information required to authenticate and maintain the connection.'),
+    p('This may include:'),
+    ul('Provider account identifiers.', 'Authorization tokens.', 'API-generated access references.', 'Card verification responses.', 'Connection status.', 'Provider-issued card references.'),
+    p('Such information is used strictly to facilitate authorized communication between DigitWallet and the relevant card provider.'),
+    p('We do not request or retain third-party account passwords unless explicitly required by a supported and authorized integration. Where possible, provider-authorized authentication mechanisms are used.'),
+    h3('2.4 Transaction and Card Activity Information'),
+    p('Depending on the capabilities of each supported provider, DigitWallet may access and display information relating to connected cards, including:'),
+    ul('Available card balance.', 'Transaction history.', 'Transaction amounts.', 'Transaction dates and timestamps.', 'Merchant information.', 'Transaction status.', 'Card activity and usage information.'),
+    p("The availability of this information depends on the provider's API, authorization permissions, and integration capabilities."),
+    h3('2.5 Device and Technical Information'),
+    p('We may automatically collect certain technical information when you access DigitWallet, including:'),
+    ul('Device type and model.', 'Operating system and version.', 'Application version.', 'IP address.', 'Device identifiers, where applicable.', 'Login timestamps.', 'Application usage information.', 'Crash reports and diagnostic information.', 'Security logs and authentication records.'),
+    p('This information helps us maintain application functionality, identify technical problems, prevent unauthorized access, and improve our services.'),
+  ] },
+  { id: 'how-we-use-your-information', title: 'How We Use Your Information', blocks: [
+    p('We use collected information for the following purposes:'),
+    ul('Creating and managing user accounts.', 'Authenticating users and securing account access.', 'Connecting users to supported virtual card providers.', 'Facilitating card importation and verification.', 'Maintaining secure connections with third-party providers.', 'Displaying connected card information.', 'Synchronizing supported card information.', 'Providing available card management functionalities.', 'Displaying balances and transaction information where supported.', 'Providing customer support.', 'Detecting suspicious activities and preventing fraud.', 'Maintaining application security and system integrity.', 'Improving application performance and functionality.', 'Complying with applicable legal and regulatory obligations.'),
+    p("We do not sell users' personal information, provider authentication tokens, or card references to third parties."),
+    p('We do not use connected card information for unrelated purposes without an appropriate legal basis.'),
+  ] },
+  { id: 'card-importation-and-third-party-provider-integration', title: 'Card Importation and Third-Party Provider Integration', blocks: [
+    p('A core feature of DigitWallet is the ability to import and manage existing virtual cards from supported third-party card providers.'),
+    p('Users can select an available provider within DigitWallet, such as Photon Pay, and initiate the card connection process.'),
+    p('The general process works as follows:'),
+    ol('The user selects a supported card provider.', 'The user provides the required card information through the available import process.', 'The required information is securely submitted to the relevant provider or its authorized verification service.', 'The provider performs the necessary authentication and card verification.', 'The provider returns a verification response.', 'If verification is successful, DigitWallet receives the appropriate provider-issued card reference or authorization token.', "The connected card becomes available within the user's DigitWallet account."),
+    p('If verification fails, the card will not be successfully imported.'),
+    b('Important Information About Card Ownership'),
+    p('DigitWallet does not independently issue the virtual cards imported by users.'),
+    p('All imported cards remain associated with their respective issuing providers. DigitWallet acts as a centralized card management interface that enables users to access supported card information and functionality through authorized integrations.'),
+    p('The availability of card details, balances, transactions, and management operations depends on the technical capabilities and permissions provided by each third-party provider.'),
+    p('DigitWallet does not guarantee that every card issued by a supported provider will be compatible with the application.'),
+  ] },
+  { id: 'third-party-services-and-information-sharing', title: 'Third-Party Services and Information Sharing', blocks: [
+    p('DigitWallet integrates with third-party services to provide its functionality.'),
+    p('These may include:'),
+    ul('Virtual card providers and issuing partners.', 'Authentication and verification services.', 'Cloud hosting and infrastructure providers.', 'Database and storage providers.', 'Application analytics and monitoring services.', 'Security and fraud prevention services.', 'Customer support platforms.'),
+    p('We may share or transmit relevant information to these providers where necessary to:'),
+    ul('Authenticate connected accounts.', 'Verify imported cards.', 'Maintain provider connections.', 'Retrieve authorized card information.', 'Facilitate supported card management operations.', 'Maintain application infrastructure.', 'Prevent fraudulent activities.', 'Comply with legal requirements.'),
+    p('We only share information reasonably necessary for the relevant service or purpose.'),
+    p('We do not sell or rent personal information or connected card references to third parties for their independent marketing purposes.'),
+    p('Third-party providers operate under their own privacy policies, terms, and security practices. We encourage users to review the applicable privacy policies of providers they connect through DigitWallet.'),
+  ] },
+  { id: 'data-storage-and-security', title: 'Data Storage and Security', blocks: [
+    p("DigitWallet takes reasonable technical and organizational measures to protect users' personal information and sensitive account-related data."),
+    p('Our security practices may include:'),
+    ul('Encryption of information during transmission.', 'Secure handling of provider-issued authorization tokens.', 'Restricted access to sensitive information.', 'Authentication and access control mechanisms.', 'Secure database management.', 'Monitoring of suspicious account activities.', 'Security logging and monitoring.', 'Regular system maintenance and security improvements.'),
+    p('We follow a data-minimization approach by retaining only the information necessary to provide our services.'),
+    b('Card Information Protection'),
+    p('DigitWallet does not intentionally store complete virtual card numbers, expiration dates, or CVV security codes in its permanent databases.'),
+    p('Full card details remain with the respective card providers.'),
+    p('Provider-issued tokens and card references are stored securely and are used to identify connected cards and maintain authorized provider integrations.'),
+    p('Although we implement reasonable security safeguards, no internet-based service or electronic storage system can be guaranteed to be completely secure.'),
+  ] },
+  { id: 'data-retention', title: 'Data Retention', blocks: [
+    p('DigitWallet retains personal information only for as long as reasonably necessary to provide its services, fulfil operational requirements, maintain security, and comply with applicable legal obligations.'),
+    p("Provider-issued tokens and card references may be retained while a card remains connected to a user's DigitWallet account or while they are necessary to maintain the requested service."),
+    p('When a user disconnects a card, we will take reasonable steps to invalidate, delete, or otherwise disable the associated provider reference or authorization token, where supported by the integration and subject to applicable retention requirements.'),
+    p('When a user requests account deletion, we will take reasonable steps to delete or anonymize associated personal information, except where retention is required or permitted by applicable law.'),
+    p('We do not intentionally retain full card numbers, expiration dates, or CVV security codes in our permanent databases.'),
+  ] },
+  { id: 'user-privacy-rights', title: 'User Privacy Rights', blocks: [
+    p('Depending on your country of residence and applicable data protection laws, you may have the right to:'),
+    ul('Request access to your personal information.', 'Request correction of inaccurate or incomplete information.', 'Request deletion of your personal information.', 'Request information about how your information is processed.', 'Request a copy of certain personal information.', 'Object to certain processing activities.', 'Restrict certain types of processing.', 'Withdraw consent where processing is based on consent.', 'Request information about third-party data sharing.', 'Disconnect imported cards from your DigitWallet account.', 'Request deletion of your DigitWallet account.'),
+    p('To exercise any of these rights, you may contact us using the privacy contact information provided in this policy.'),
+    p('We will review and respond to valid requests in accordance with applicable data protection laws.'),
+  ] },
+  { id: 'account-and-card-deletion', title: 'Account and Card Deletion', blocks: [
+    p('Users may request deletion of their DigitWallet accounts through the available account settings or by contacting our support team.'),
+    p('Upon receiving a valid account deletion request, we will take reasonable steps to:'),
+    ul('Delete or anonymize personal information associated with the account.', "Remove connected card references from the user's DigitWallet account.", 'Revoke or invalidate associated provider authorization tokens where supported.', 'Remove information that is no longer required for legitimate operational or legal purposes.'),
+    p("Please note that deleting your DigitWallet account does not automatically close your underlying virtual cards or delete information maintained independently by third-party card providers."),
+    p("Users may need to contact the respective providers separately to close their cards or request deletion of information held within those providers' systems."),
+  ] },
+  { id: 'cookies-and-analytics', title: 'Cookies and Analytics', blocks: [
+    p('Our website and related services may use cookies, analytics technologies, and similar tools to:'),
+    ul('Maintain website functionality.', 'Understand application and website performance.', 'Identify technical issues.', 'Analyze usage patterns.', 'Improve our services and user experience.'),
+    p('Where required by applicable law, we will obtain appropriate consent before using non-essential cookies or similar tracking technologies.'),
+    p('Users may manage cookie preferences through their browser settings or any cookie management tools we provide.'),
+  ] },
+  { id: 'international-data-transfers', title: 'International Data Transfers', blocks: [
+    p('DigitWallet may use hosting providers, infrastructure services, and third-party integrations located in different countries.'),
+    p("As a result, users' personal information may be transferred to or processed in countries outside their country of residence."),
+    p('Where international transfers occur, we will take reasonable steps to ensure that appropriate safeguards are implemented in accordance with applicable data protection laws.'),
+  ] },
+  { id: 'childrens-privacy', title: "Children's Privacy", blocks: [
+    p('DigitWallet is intended for individuals aged 18 and above.'),
+    p('Our services are not designed for children under the age of 18, and we do not knowingly collect personal information from children under 18.'),
+    p('If we become aware that personal information belonging to a child has been collected in violation of applicable law, we will take appropriate steps to investigate and address the situation.'),
+  ] },
+  { id: 'third-party-websites-and-services', title: 'Third-Party Websites and Services', blocks: [
+    p('DigitWallet may contain links to third-party websites, applications, or services.'),
+    p('These external services operate independently of DigitWallet and may have their own privacy policies, terms of service, and security practices.'),
+    p('We are not responsible for the privacy practices, content, or security of external websites and services.'),
+    p('Users are encouraged to review the applicable policies before using third-party services.'),
+  ] },
+  { id: 'legal-compliance', title: 'Legal Compliance', blocks: [
+    p('DigitWallet is committed to handling personal information in accordance with applicable data protection and privacy laws.'),
+    p('Where applicable, our data processing practices are intended to align with relevant requirements, including:'),
+    ul('The Nigeria Data Protection Act 2023.', 'Applicable international data protection and privacy regulations.', 'Relevant data security and information protection requirements.'),
+    p('We may disclose information where required by law, a valid court order, regulatory request, or other legally binding obligation.'),
+  ] },
+  { id: 'changes-to-this-privacy-policy', title: 'Changes to This Privacy Policy', blocks: [
+    p('We may update this Privacy Policy from time to time to reflect changes in our application, integrations, operational practices, technology, or applicable legal requirements.'),
+    p('When significant changes are made, we may notify users through:'),
+    ul('In-app notifications.', 'Email communications.', 'Updates published on our website.', 'Other appropriate communication channels.'),
+    p('The updated policy will include a revised "Last Updated" date.'),
+    p('Users are encouraged to review this Privacy Policy periodically.'),
+  ] },
+  { id: 'contact-us', title: 'Contact Us', blocks: [
+    p('If you have questions, concerns, complaints, or requests relating to this Privacy Policy or the handling of your personal information, please contact us using the details below.'),
+    { t: 'fields', items: [
+      { label: 'Application Name', value: 'DigitWallet' },
+      { label: 'Company', value: 'DigitWallet' },
+      { label: 'Privacy and Data Protection Contact', value: '{{privacy}}' },
+      { label: 'Website', value: '{{website}}' },
+      { label: 'Country of Operation', value: '{{country}}' },
+    ] },
+    p('We will review and respond to privacy-related enquiries within a reasonable timeframe and in accordance with applicable data protection requirements.'),
+  ] },
 ]
-
-export const privacySections: LegalSection[] = titles.map((title) => ({
-  id: title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
-  title,
-  blocks: pending,
-}))

@@ -1,7 +1,7 @@
 import { useRef, useState, type FormEvent } from 'react'
-import { AlertCircle, CheckCircle2, Mail, MapPin, ShieldCheck } from 'lucide-react'
+import { AlertCircle, CheckCircle2, Mail } from 'lucide-react'
 import Seo from '../components/Seo'
-import { placeholders, site } from '../config/site'
+import { site } from '../config/site'
 
 type Values = { name: string; email: string; subject: string; message: string }
 type Errors = Partial<Record<keyof Values, string>>
@@ -55,8 +55,7 @@ export default function Contact() {
     } catch { setStatus('error') }
   }
 
-  const supportShown = site.supportEmail || placeholders.support
-  const privacyShown = site.privacyEmail || placeholders.privacy
+  const supportShown = site.supportEmail
   const mailto = site.supportEmail
     ? `mailto:${site.supportEmail}?subject=${encodeURIComponent(v.subject)}&body=${encodeURIComponent(`${v.message}\n\n— ${v.name} (${v.email})`)}`
     : ''
@@ -118,17 +117,7 @@ export default function Contact() {
             <div className="card p-6">
               <Mail className="text-cyan-500" size={22} />
               <h2 className="mt-4 text-sm font-semibold uppercase tracking-[.14em] text-slate-soft">Support email</h2>
-              <p className="mt-1 break-words text-lg font-semibold text-navy-900">{site.supportEmail ? <a href={`mailto:${site.supportEmail}`}>{supportShown}</a> : supportShown}</p>
-            </div>
-            <div className="card p-6">
-              <ShieldCheck className="text-cyan-500" size={22} />
-              <h2 className="mt-4 text-sm font-semibold uppercase tracking-[.14em] text-slate-soft">Privacy email</h2>
-              <p className="mt-1 break-words text-lg font-semibold text-navy-900">{site.privacyEmail ? <a href={`mailto:${site.privacyEmail}`}>{privacyShown}</a> : privacyShown}</p>
-            </div>
-            <div className="card p-6">
-              <MapPin className="text-cyan-500" size={22} />
-              <h2 className="mt-4 text-sm font-semibold uppercase tracking-[.14em] text-slate-soft">Country</h2>
-              <p className="mt-1 text-lg font-semibold text-navy-900">{site.country}</p>
+              <p className="mt-1 break-words text-lg font-semibold text-navy-900">{<a href={`mailto:${site.supportEmail}`}>{supportShown}</a>}</p>
             </div>
           </aside>
         </div>
