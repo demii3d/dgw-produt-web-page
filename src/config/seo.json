@@ -1,0 +1,26 @@
+{
+  "siteName": "DigitWallet",
+  "ogImage": "/assets/screen-onboarding.png",
+  "routes": {
+    "/": {
+      "title": "DigitWallet | Manage All Your Virtual Cards in One Place",
+      "description": "Connect, organize and manage your existing virtual cards from supported providers with DigitWallet. Enjoy a centralized virtual card management experience."
+    },
+    "/about": {
+      "title": "About DigitWallet | Making Virtual Card Management Simpler",
+      "description": "DigitWallet is a centralized mobile application for connecting and managing existing virtual cards from supported third-party providers. Learn about our mission, vision and approach."
+    },
+    "/privacy-policy": {
+      "title": "Privacy Policy | DigitWallet",
+      "description": "Read the DigitWallet Privacy Policy: what information we collect, how connected virtual card data is handled, your privacy rights and how to request account deletion."
+    },
+    "/terms-of-use": {
+      "title": "Terms of Use | DigitWallet",
+      "description": "Read the DigitWallet Terms of Use covering eligibility, third-party card providers, card importation, user responsibilities, account deletion and more."
+    },
+    "/contact": {
+      "title": "Contact DigitWallet | We're Here to Help",
+      "description": "Have a question about DigitWallet, connecting your virtual cards or using the application? Get in touch with the DigitWallet team."
+    }
+  }
+}
